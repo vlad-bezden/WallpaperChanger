@@ -1,0 +1,25 @@
+{
+    "version": "0.1.0",
+    "command": "python",
+    "isShellCommand": true,
+    "suppressTaskName": false,
+    "args": [
+        "${file}"
+    ],
+    "showOutput": "always",
+    "tasks": [
+        {
+            "taskName": "Turn wallpaper on",
+            "suppressTaskName": true,
+            "isBuildCommand": true,
+            "args": [
+                 "true"
+            ]
+        },
+        {
+            "taskName": "Turn wallpaper off",
+            "suppressTaskName": true,
+            "isBuildCommand": true
+        }
+    ]
+}

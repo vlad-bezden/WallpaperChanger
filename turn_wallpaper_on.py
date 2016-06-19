@@ -1,10 +1,9 @@
+import argparse
 import struct
-import sys
 import ctypes
 
 
 SPI_SETDESKWALLPAPER = 0x0014
-WALLPAPER_PATH = 'D:\\Temp\\20091215_222748_Tamila.jpg'
 
 
 def is_64_windows():
@@ -18,7 +17,7 @@ def get_sys_parameters_info():
         else ctypes.windll.user32.SystemParametersInfoA
 
 
-def change_wallpaper(file_path):
+def change_wallpaper(activate, file_path):
     """Changes desktop wallpaper. """
     sys_parameters_info = get_sys_parameters_info()
     result = sys_parameters_info(SPI_SETDESKWALLPAPER, 0, file_path, 3)
@@ -30,29 +29,45 @@ def change_wallpaper(file_path):
         raise ValueError(ctypes.WinError())
 
 
-def turn_on_or_off(argv):
+def turn_on_or_off(activate):
     """
     Check if wallpaper has to be turn on or off
-    :param argv: passed parameters by user
+    :param activate: passed parameters by user
     :return: true if wallpaper has to be turned on
     """
-    return False if len(argv) == 1 else argv[1].lower() in ('true', '1', 'yes', 'on')
+    return True if activate == 'on' else False
 
 
-def main():
+def main(turn_on, file_path):
     """
     Checks if wallpaper has to be on or off and determines based on that wallpaper file path
     :return: None
     """
-    if_turn_on = turn_on_or_off(sys.argv)
-    file_path = WALLPAPER_PATH if if_turn_on else ''
-    change_wallpaper(file_path)
+    activate = turn_on_or_off(turn_on)
+    if activate and file_path == '':
+        print('Invalid file path for desktop background. File path is required for turning wallpaper on')
+        return
+    change_wallpaper(activate, file_path)
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description = 'Turnes Descktop wallpaer background on or off')
+    parser.add_argument(
+        '-a',
+        '--activate',
+        choices=['on', 'off'],
+        default='off',
+        help='Turn wallpaer on or turn it off.'
+    )
+    parser.add_argument(
+        '-f',
+        '--file',
+        default='',
+        help='Fully qualified path to image that needs to be displayed when wallpaper needs to be turn on'
+    )
     try:
-        main()
-        sys.exit(0)
+        args = parser.parse_args()
+        main(args.activate, args.file)
     except Exception as e:
         print('Unexpected Error: ', str(e))
-        sys.exit(1)

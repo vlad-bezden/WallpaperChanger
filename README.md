@@ -5,12 +5,23 @@
 To turn wallpaper on use following command:
 
 ```
-python turn_wallpaper_on.py on
+python turn_wallpaper_on.py -a on -f c:\file_path.jpg
 ```
-Valid arguments are: **'true', '1', 'yes', 'on'**
 
 In order to turn wallpaper off execute code without any parameters:
 
 ```
 python turn_wallpaper_on.py
+```
+
+or
+
+```
+python turn_wallpaper_on.py -a off
+```
+
+For more program help run
+
+```
+python turn_wallpaper_on.py -h
 ```

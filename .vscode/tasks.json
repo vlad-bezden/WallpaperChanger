@@ -4,20 +4,20 @@
     "isShellCommand": true,
     "suppressTaskName": false,
     "args": [
-        "${file}"
+        "${workspaceRoot}/turn_wallpaper_on.py"
     ],
     "showOutput": "always",
     "tasks": [
         {
-            "taskName": "Turn wallpaper on",
+            "taskName": "turn_on",
             "suppressTaskName": true,
             "isBuildCommand": true,
             "args": [
-                 "true"
+                 "-a", "on", "-f", "D:\\Temp\\Tamila.jpg"
             ]
         },
         {
-            "taskName": "Turn wallpaper off",
+            "taskName": "turn_off",
             "suppressTaskName": true,
             "isBuildCommand": true
         }

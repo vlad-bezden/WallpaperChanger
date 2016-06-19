@@ -2,16 +2,29 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python",
+            "name": "turn_on",
             "type": "python",
             "request": "launch",
-            "stopOnEntry": true,
-            "program": "${file}",
+            "program": "${workspaceRoot}/turn_wallpaper_on.py",
+                        "args": [
+                 "-a", "on", "-f", "D:\\Temp\\Tamila.jpg"
+            ],
             "debugOptions": [
                 "WaitOnAbnormalExit",
                 "WaitOnNormalExit",
                 "RedirectOutput"
             ]
-        }
+        },
+        {
+            "name": "turn_off",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/turn_wallpaper_on.py",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput"
+            ]
+        }        
     ]
 }

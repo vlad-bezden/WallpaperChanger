@@ -47,6 +47,9 @@ def main(turn_on, file_path):
     if activate and file_path == '':
         print('Invalid file path for desktop background. File path is required for turning wallpaper on')
         return
+    elif not activate:
+        file_path = ''
+        
     change_wallpaper(activate, file_path)
 
 
